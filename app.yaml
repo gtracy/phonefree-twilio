@@ -7,9 +7,6 @@ derived_file_type:
 - python_precompiled
 
 handlers:
-- url: /_ah/login_required
-  script: openid_login.py
-  
 - url: /css
   static_dir: css
   
