@@ -1,0 +1,6 @@
+<?xml version="1.0" standalone="yes" ?>
+<Response>
+    <Dial callerId="{{caller_id}}">
+        <Number>{{phone}}</Number>
+    </Dial>
+</Response>

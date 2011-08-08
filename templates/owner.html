@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <script type="text/javascript"
+      src="http://static.twilio.com/libs/twiliojs/1.0/twilio.min.js"></script>
+    <script type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+    </script>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+      
+        $('.dial').click(function() {
+          number = $("#number").val() + $(this).attr('number');
+          $("#number").val(number);
+        });
+
+      });
+    </script> 
+
+    <script type="text/javascript">
+      var inbound_connection;
+      
+      try {
+        Twilio.Device.setup("{{token}}");
+      } catch (err) {
+        console.log("This browser phone requires Flash.");
+      }
+      
+      Twilio.Device.ready(function (device) {
+        $("#log").text("Ready");
+      });
+ 
+      Twilio.Device.error(function (error) {
+        $("#log").text("Error: " + error.message);
+      });
+ 
+      Twilio.Device.connect(function (conn) {
+        $("#log").text("Successfully established call");
+      });
+ 
+      Twilio.Device.disconnect(function (conn) {
+        $("#log").text("Call ended");
+        inbound_connection = '';
+      });
+ 
+      Twilio.Device.incoming(function (conn) {
+        inbound_connection = conn
+        incoming_call(conn);
+      });
+      
+      function call() {
+        params =  { "number" : $("#number").val() };
+        Twilio.Device.connect(params);
+      }
+ 
+      function hangup() {
+        Twilio.Device.disconnectAll();
+        inbound_connection.disconnect();
+        $('#controls').html("<button class='inputs call' onclick='call();'>call</button><button class='inputs hangup' onclick='hangup();'>hangup</button><input class='inputs' type='text' id='number' name='number' maxlength='10' size='11' placeholder='dial number'/>");
+      }
+ 
+      function ignore() {
+        Twilio.Device.disconnectAll();
+        inbound_connection.disconnect();
+        $('#controls').html("<button class='inputs call' onclick='call();'>call</button><button class='inputs hangup' onclick='hangup();'>hangup</button><input class='inputs' type='text' id='number' name='number' maxlength='10' size='11' placeholder='dial number'/>");
+        // this is a hack! i can't get a disconnect to happen any other way right now.
+        window.location.reload()
+      }
+
+      function pickup() {
+        inbound_connection.accept();
+        $('#controls').html('<button class="inputs hangup" onclick="hangup();">hangup</button>');
+      };
+
+      function incoming_call(conn) {
+        $("#controls").html("<button class='inputs answer' onclick='pickup();'>answer</button><button class='inputs ignore' onclick='ignore();'>ignore</button>");
+        $("#log").text("Incoming connection from " + conn.parameters.From);
+      }
+      
+  </script>
+  </head>
+<body>
+
+ <div id="header">
+  <span class="title"><a href="/">{{title}}</a></span>
+  <span class="user-login">
+    {{login}}
+  </span>
+ </div>
+ <div id="log">Loading...</div>
+ 
+ <div id="container">
+   <div id="content">
+  
+  <ul id="grid">
+   <li><a href="#" class="dial" number="1"><img src="img/dial1.jpg"></li>
+   <li><a href="#" class="dial" number="2"><img src="img/dial2.jpg"></a></li>
+   <li><a href="#" class="dial" number="3"><img src="img/dial3.jpg"></a></li>
+
+   <li><a href="#" class="dial" number="4"><img src="img/dial4.jpg"></a></li>
+   <li><a href="#" class="dial" number="5"><img src="img/dial5.jpg"></a></li>
+   <li><a href="#" class="dial" number="6"><img src="img/dial6.jpg"></a></li>
+
+   <li><a href="#" class="dial" number="7"><img src="img/dial7.jpg"></a></li>
+   <li><a href="#" class="dial" number="8"><img src="img/dial8.jpg"></a></li>
+   <li><a href="#" class="dial" number="9"><img src="img/dial9.jpg"></a></li>
+
+   <li><a href="#"><img /></a></li>
+   <li><a href="#" class="dial" number="0"><img src="img/dial0.jpg"></a></li>
+   <li><a href="#"><img /></a></li>
+  </ul> 
+  
+   <div id="controls">
+    <input class="inputs" type="text" id="number" name="number" maxlength="10" size="11"
+           placeholder="dial number"/>
+    <p/>
+    <button class="inputs call" onclick="call();">
+      call
+    </button>
+    <button class="inputs hangup" onclick="hangup();">
+     hangup
+    </button>
+  </div>
+
+  </div>
+  </div>
+ 
+  <div id="footer">
+  <hr>
+   <div id="powered-by">
+     powered by:<br>
+     <a href=http://code.google.com/appengine/><img src="img/gae-logo.png" alt="google app engine" height="30" width="30"></a>
+     <a href=http://twilio.com><img src="img/twilio-logo.jpg" alt="twilio" height="30" width="30"></a>
+   </div>
+   <div id="me">
+    <br><a href=http://gregtracy.com>greg tracy</a> | </a><a href="mailto:gtracy@gmail.com?subject=twilio%20phone%20feedback">send feedback</a>
+   </div>
+  </div>
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{google_analytics}}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+ </body>
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" standalone="yes" ?>
+<Response>
+    <Dial callerId="{{caller_id}}" action="/inbound/complete" method="post" timeout="20">
+        <Client>{{client}}</Client>
+    </Dial>
+</Response>

@@ -1,0 +1,24 @@
+This project let's you deploy a browser-based phone using the Twilio Client. It's magical.
+
+When you deploy this project to Google App Engine and configure it based on your own Twilio credentials,
+you will be able to call out and receive telephone calls right from your browser.
+
+It supports three basic features. When you're logged into your app you can do the following...
+<ul>
+<li>You can make outbound calls to any number using the dial pad.</li>
+<li>Your friends can login and make browser-to-browser calls to you.</li>
+<li>Anyone can call your Twilio your number and they will be routed to your browser.</li>
+</ul>
+
+This is intended to be deployed on Google App Engine using Twilio. You are required to personalize the configuration by updating <strong>configuration.py</strong> in the following ways:
+
+1. Configure your App Engine ID
+2. Configure your Twilio account details
+3. Configure your mobile phone number for account verification
+4. Configure your application name and description
+5. Configure your name
+6. Configure the Google Analytics parameter
+
+Also remember to update the App Engine ID in the app.yaml file before deploying.
+
+Once you deploy the application, go to your app's homepage - http://myapp.appspot.com - and follow the instructions.

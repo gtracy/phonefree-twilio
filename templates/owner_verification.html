@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>I Don't Need No Stinking Phone!</title>
+    <script type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+    </script>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript">
+  
+  </script>
+  </head>
+  <body>
+
+ <div id="header">
+  <span class="title"><a href="/">i don't need no stinking phone</a></span>
+  <span class="user-login">
+    {{current_user}}
+  </span>
+ </div>
+
+ <div id="container">
+   <div id="content" style="padding-top:50px;width:450px;">
+   <h3>Welcome to your new browser phone!</h3>
+   <div id="instructions">
+   Here's how it works. When you're logged in...
+   <ul>
+    <li>You can make outbound calls to any number using the dial pad.</li>
+    <li>Your friends can login and make browser-to-browser calls to you.</li>
+    <li>Anyone can call your Twilio your number and they will be routed to your browser.</li>
+   </ul>
+   Before you get started...
+   <p/>
+   It looks like this installation is unverified. We're assuming that you're the
+  owner of this phone, er, browser. But we need to make sure that's the case. 
+  <p>We just sent a five digit verification code to the mobile phone this site is configured
+  with. Grab that code from your mobile phone and enter it in this form</p>
+   </div>
+  <form action='/verify' method='post'>
+   <input type="text"/>
+   <input type="submit" value="Verify"/>
+  </form>
+ </div>
+ </div>
+ 
+  <div id="footer">
+  <hr>
+   <div id="powered-by">
+     powered by:<br>
+     <a href=http://code.google.com/appengine/><img src="img/gae-logo.png" alt="google app engine" height="30" width="30"></a>
+     <a href=http://twilio.com><img src="img/twilio-logo.jpg" alt="twilio" height="30" width="30"></a>
+   </div>
+   <div id="me">
+    <br><a href=http://gregtracy.com>greg tracy</a> | </a><a href="mailto:gtracy@gmail.com?subject=twilio%20phone%20feedback">send feedback</a>
+   </div>
+  </div>
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{google_analytics}}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+ </body>
+</html>

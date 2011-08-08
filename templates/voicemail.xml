@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes" ?>
+<Response>
+    <Say>
+        Hey! Sorry I wasn't in my browser to take your call. Please leave a message at the beep.
+    </Say>
+    <Record
+        action="{{action_url}}"
+        method="POST"
+        maxLength="60"
+        finishOnKey="#">
+    </Record>
+</Response>

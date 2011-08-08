@@ -1,0 +1,31 @@
+application: fixme
+version: 1
+runtime: python
+api_version: 1
+
+derived_file_type:
+- python_precompiled
+
+handlers:
+- url: /_ah/login_required
+  script: openid_login.py
+  
+- url: /css
+  static_dir: css
+  
+- url: /img
+  static_dir: img
+
+- url: /js
+  static_dir: js
+  
+- url: /favicon.ico
+  static_files: img/favicon.ico
+  upload: img/favicon.ico
+
+- url: /error.html
+  static_files: static/error.html
+  upload: static/error.html
+  
+- url: .*
+  script: main.py
