@@ -225,7 +225,6 @@ def sendSMS(phone,msg):
     Convenience method to send an SMS
     """
     try:
-        return
         client = TwilioRestClient(configuration.TWILIO_ACCOUNT_SID,
                                   configuration.TWILIO_AUTH_TOKEN)
         logging.debug('sending message - %s - to %s' % (msg,phone))
