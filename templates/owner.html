@@ -10,6 +10,9 @@
     <script type="text/javascript"
       src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
     </script>
+    <script type="text/javascript" 
+      src="http://mediaplayer.yahoo.com/js">
+    </script>
     <link href="/css/style.css" type="text/css" rel="stylesheet" />
     
     <script type="text/javascript">
@@ -96,39 +99,44 @@
  <div id="log">Loading...</div>
  
  <div id="container">
-   <div id="content">
+  <div id="phone">
   
-  <ul id="grid">
-   <li><a href="#" class="dial" number="1"><img src="img/dial1.jpg"></li>
-   <li><a href="#" class="dial" number="2"><img src="img/dial2.jpg"></a></li>
-   <li><a href="#" class="dial" number="3"><img src="img/dial3.jpg"></a></li>
+    <ul id="grid">
+     <li><a href="#" class="dial" number="1"><img src="img/dial1.jpg"></li>
+     <li><a href="#" class="dial" number="2"><img src="img/dial2.jpg"></a></li>
+     <li><a href="#" class="dial" number="3"><img src="img/dial3.jpg"></a></li>
 
-   <li><a href="#" class="dial" number="4"><img src="img/dial4.jpg"></a></li>
-   <li><a href="#" class="dial" number="5"><img src="img/dial5.jpg"></a></li>
-   <li><a href="#" class="dial" number="6"><img src="img/dial6.jpg"></a></li>
+     <li><a href="#" class="dial" number="4"><img src="img/dial4.jpg"></a></li>
+     <li><a href="#" class="dial" number="5"><img src="img/dial5.jpg"></a></li>
+     <li><a href="#" class="dial" number="6"><img src="img/dial6.jpg"></a></li>
 
-   <li><a href="#" class="dial" number="7"><img src="img/dial7.jpg"></a></li>
-   <li><a href="#" class="dial" number="8"><img src="img/dial8.jpg"></a></li>
-   <li><a href="#" class="dial" number="9"><img src="img/dial9.jpg"></a></li>
+     <li><a href="#" class="dial" number="7"><img src="img/dial7.jpg"></a></li>
+     <li><a href="#" class="dial" number="8"><img src="img/dial8.jpg"></a></li>
+     <li><a href="#" class="dial" number="9"><img src="img/dial9.jpg"></a></li>
 
-   <li><a href="#"><img /></a></li>
-   <li><a href="#" class="dial" number="0"><img src="img/dial0.jpg"></a></li>
-   <li><a href="#"><img /></a></li>
-  </ul> 
+     <li><a href="#"><img /></a></li>
+     <li><a href="#" class="dial" number="0"><img src="img/dial0.jpg"></a></li>
+     <li><a href="#"><img /></a></li>
+    </ul> 
   
-   <div id="controls">
-    <input class="inputs" type="text" id="number" name="number" maxlength="10" size="11"
-           placeholder="dial number"/>
-    <p/>
-    <button class="inputs call" onclick="call();">
-      call
-    </button>
-    <button class="inputs hangup" onclick="hangup();">
-     hangup
-    </button>
+    <div id="controls">
+     <input class="inputs" type="text" id="number" name="number" maxlength="10" size="11"
+            placeholder="dial number"/>
+     <p/>
+     <button class="inputs call" onclick="call();">call</button>
+     <button class="inputs hangup" onclick="hangup();">hangup</button>
+    </div>
   </div>
-
-  </div>
+  
+   <div id="voicemail">
+     <h3>Voicemail</h3>
+     {% for v in voicemail %}
+      {{v.from}} called on {{v.date}} ({{v.duration}} seconds) <a href="{{v.url}}.mp3">click to listen</a>
+      <p/>
+     {% endfor %}
+   </div>
+    
+   </div>
   </div>
  
   <div id="footer">
